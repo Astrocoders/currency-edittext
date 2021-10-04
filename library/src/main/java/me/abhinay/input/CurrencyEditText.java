@@ -53,7 +53,7 @@ public class CurrencyEditText extends AppCompatEditText {
                 if (!s.toString().equals(current)) {
                     editText.removeTextChangedListener(this);
 
-                    String cleanString = s.toString().replaceAll("[$,.]", "").replaceAll(Currency, "").replaceAll("\\s+", "");
+                    String cleanString = s.toString().replaceAll(Currency, "").replaceAll("[$,.]", "").replaceAll("\\s+", "");
 
                     if (cleanString.length() != 0) {
                         try {
@@ -118,9 +118,9 @@ public class CurrencyEditText extends AppCompatEditText {
     public double getCleanDoubleValue() {
         double value = 0.0;
         if (Decimals) {
-            value = Double.parseDouble(editText.getText().toString().trim().replaceAll("[$,]", "").replaceAll(Currency, ""));
+            value = Double.parseDouble(editText.getText().toString().trim().replaceAll(Currency, "").replaceAll("[$,]", ""));
         } else {
-            String cleanString = editText.getText().toString().trim().replaceAll("[$,.]", "").replaceAll(Currency, "").replaceAll("\\s+", "");
+            String cleanString = editText.getText().toString().trim().replaceAll(Currency, "").replaceAll("[$,.]", "").replaceAll("\\s+", "");
             try {
                 value = Double.parseDouble(cleanString);
             } catch (NumberFormatException e) {
@@ -133,10 +133,10 @@ public class CurrencyEditText extends AppCompatEditText {
     public int getCleanIntValue() {
         int value = 0;
         if (Decimals) {
-            double doubleValue = Double.parseDouble(editText.getText().toString().trim().replaceAll("[$,]", "").replaceAll(Currency, ""));
+            double doubleValue = Double.parseDouble(editText.getText().toString().trim().replaceAll(Currency, "").replaceAll("[$,]", ""));
             value = (int) Math.round(doubleValue);
         } else {
-            String cleanString = editText.getText().toString().trim().replaceAll("[$,.]", "").replaceAll(Currency, "").replaceAll("\\s+", "");
+            String cleanString = editText.getText().toString().trim().replaceAll(Currency, "").replaceAll("[$,.]", "").replaceAll("\\s+", "");
             try {
                 value = Integer.parseInt(cleanString);
             } catch (NumberFormatException e) {
