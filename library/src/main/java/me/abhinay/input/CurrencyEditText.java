@@ -1,10 +1,11 @@
 package me.abhinay.input;
 
 import android.content.Context;
-import androidx.appcompat.widget.AppCompatEditText;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -13,7 +14,7 @@ import java.util.Locale;
  * Created by AbhinayMe on 01/01/2019.
  */
 
-public class CurrencyEditText extends AppCompatEditText {
+public class CurrencyEditText extends TextInputEditText {
 
     private String current = "";
     private CurrencyEditText editText = CurrencyEditText.this;
@@ -53,7 +54,11 @@ public class CurrencyEditText extends AppCompatEditText {
                 if (!s.toString().equals(current)) {
                     editText.removeTextChangedListener(this);
 
-                    String cleanString = s.toString().replace(Currency, "").replaceAll("[$,.]", "").replaceAll("\\s+", "");
+                    String cleanString = s.toString()
+                            .replace(Currency, "")
+                            .replaceAll("[$,.]", "")
+                            .replaceAll("\\s+", "")
+                            .trim();
 
                     if (cleanString.length() != 0) {
                         try {
@@ -118,9 +123,19 @@ public class CurrencyEditText extends AppCompatEditText {
     public double getCleanDoubleValue() {
         double value = 0.0;
         if (Decimals) {
-            value = Double.parseDouble(editText.getText().toString().trim().replace(Currency, "").replaceAll("[$,]", ""));
+            value = Double.parseDouble(
+                    editText.getText()
+                            .toString()
+                            .replace(Currency, "")
+                            .replaceAll("[$,]", "")
+                            .trim()
+            );
         } else {
-            String cleanString = editText.getText().toString().trim().replace(Currency, "").replaceAll("[$,.]", "").replaceAll("\\s+", "");
+            String cleanString = editText.getText().toString()
+                    .replace(Currency, "")
+                    .replaceAll("[$,.]", "")
+                    .replaceAll("\\s+", "")
+                    .trim();
             try {
                 value = Double.parseDouble(cleanString);
             } catch (NumberFormatException e) {
@@ -133,10 +148,10 @@ public class CurrencyEditText extends AppCompatEditText {
     public int getCleanIntValue() {
         int value = 0;
         if (Decimals) {
-            double doubleValue = Double.parseDouble(editText.getText().toString().trim().replace(Currency, "").replaceAll("[$,]", ""));
+            double doubleValue = Double.parseDouble(editText.getText().toString().replace(Currency, "").replaceAll("[$,]", "").trim());
             value = (int) Math.round(doubleValue);
         } else {
-            String cleanString = editText.getText().toString().trim().replace(Currency, "").replaceAll("[$,.]", "").replaceAll("\\s+", "");
+            String cleanString = editText.getText().toString().replace(Currency, "").replaceAll("[$,.]", "").replaceAll("\\s+", "").trim();
             try {
                 value = Integer.parseInt(cleanString);
             } catch (NumberFormatException e) {
