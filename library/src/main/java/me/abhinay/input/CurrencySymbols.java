@@ -14,5 +14,5 @@ public class CurrencySymbols {
     public static String INDIA = "₹";
     public static String PHILIPPINES = "₱";
     public static String PAKISTAN = "₨";
-    public static String BRAZILIAN = "R$"
+    public static String BRAZILIAN = "R$";
 }
